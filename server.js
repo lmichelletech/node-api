@@ -1,16 +1,26 @@
-const http = require('http');
-const port = 3000;
-const host = '127.0.0.1';
+var express = require('express');
+var app = express();
+var port = 3000;
+var host = '127.0.0.1';
 
-const server = http.createServer();
+var jsonData = {count: 12, message: 'hey'};
 
-server.on('request', (req, res) => {
-    const {method, url} = req;
-    console.log('method', method, 'url', url);
+app.get('/', (req, res) => {
+    //res sendFile takes an ABSOLUTE path to a file and 
+    //sets the mime type based on the file extension
+    res.sendFile(__dirname + '/index.html', err => {
+        if(err){
+            res.status(500).send(err);
+        }
+    })
+
+    app.get('/data', (req, res) => {
+        res.json(jsonData);
+    })
 })
 
 app.listen(port, host, function(){
     
-        console.log(`Server running at http://${hostname}:${port}/`);
+        console.log('Listening on http://localhost:', port);
     
 })

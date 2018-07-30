@@ -1,0 +1,23 @@
+const http = require('http');
+const port = 3000;
+const host = '127.0.0.1';
+
+//request handler
+//server object is an eventEmitter
+const server = http.createServer();
+server.on('request', (req, res) => {
+    const {method, url} = req;
+    const {headers} = req;
+    const userAgent = headers['user-agent'];
+
+    // console.log('method', method, 'url', url);
+    // console.log('headers', headers);
+    // console.log('userAgent', userAgent);
+    console.log('request', req);
+})
+
+app.listen(port, host, function(){
+    
+        console.log(`Server running at http://${hostname}:${port}/`);
+    
+})
